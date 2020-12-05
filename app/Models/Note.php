@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Mood extends Model
+class Note extends Model
 {
     use HasFactory;
 
-    public function notes()
+    public function mood(): BelongsTo
     {
-        return $this->belongsToMany(Note::class);
+        return $this->belongsTo(Mood::class);
     }
 }

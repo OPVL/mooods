@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMoodsTable extends Migration
+class CreateNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateMoodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('moods', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->float('value');
+            $table->text('value');
+            $table->foreignId('mood_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +29,6 @@ class CreateMoodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moods');
+        Schema::dropIfExists('notes');
     }
 }
