@@ -6,6 +6,20 @@
         "framework",
         "laravel"
     ],
+    "authors": [
+        {
+            "email": "lloydculpepper4@gmail.com",
+            "name": "Lloyd Culpepper",
+            "homepage": "https://lloydculpepper.com",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.drp.digital"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -18,6 +32,8 @@
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
+        "brianium/paratest": "^6.1",
+        "drp/coding-standards": "^1.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
@@ -58,6 +74,15 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test": ".\\vendor\\bin\\paratest",
+        "test:coverage": ".\\vendor\\bin\\paratest --coverage-html=tests/_output/coverage",
+        "php-lint": ".\\vendor\\bin\\parallel-lint ./app",
+        "phpcs": ".\\vendor\\bin\\phpcs ./app --ignore=*.blade.php --standard=vendor/drp/coding-standards/phpcs.xml -ps",
+        "cbf": ".\\vendor\\bin\\phpcbf ./app --ignore=*.blade.php --standard=vendor/drp/coding-standards/phpcs.xml",
+        "lint": [
+            "@composer php-lint",
+            "@composer phpcs"
         ]
     }
 }
