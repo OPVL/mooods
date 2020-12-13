@@ -8,11 +8,10 @@ class UpdateMood extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
+        // check user has completed onboard (data protection, must consent before storage)
         return false;
     }
 
@@ -21,10 +20,9 @@ class UpdateMood extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
         ];
     }
 }
