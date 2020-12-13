@@ -31,12 +31,21 @@
         width: 10vw;
     }
 
+    .how-are-you-interactive {
+        width: calc(100vw - 80px);
+        display: flex;
+        height: 80vh;
+        padding: 40px;
+    }
+
 </style>
 
 <body>
     <nav>
         <div class="left">
-            <a href="{{ route('home.index') }}"><img src="/img/nav-logo-small.png" alt="mooood-logo-small"></a>
+            <a href="{{ route('home.index') }}">
+                <img id="nav-logo" src="/img/nav-logo-small.png" alt="mooood-logo-small">
+            </a>
         </div>
         <div class="centre">
             <span>searchbar maybe idek jus spitballin</span>
@@ -56,7 +65,36 @@
     </nav>
     <div class="how-are-you-interactive">
         <div class="app">
-            <p>awaiting app</p>
+            <div class="question">
+                how are you feeling?
+            </div>
+            <div class="response">
+                <form action="/bullshit" method="post">
+                    <div class="moood-icons">
+                        <div class="moood-icon">
+                            <label for="mood-0"><div class="mood mood-0"></div></label>
+                            <input type="radio" name="moood" id="mood-0">
+                        </div>
+                        <div class="moood-icon">
+                            <label for="mood-1"><div class="mood mood-1"></div></label>
+                            <input type="radio" name="moood" id="mood-1">
+                        </div>
+                        <div class="moood-icon">
+                            <label for="mood-2"><div class="mood mood-2"></div></label>
+                            <input type="radio" name="moood" id="mood-2">
+                        </div>
+                        <div class="moood-icon">
+                            <label for="mood-3"><div class="mood mood-3"></div></label>
+                            <input type="radio" name="moood" id="mood-3">
+                        </div>
+                        <div class="moood-icon">
+                            <label for="mood-4"><div class="mood mood-4"></div></label>
+                            <input type="radio" name="moood" id="mood-4">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 </body>
