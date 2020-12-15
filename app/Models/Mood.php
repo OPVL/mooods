@@ -9,8 +9,12 @@ class Mood extends Model
 {
     use HasFactory;
 
-    public function notes()
+    protected $fillable = [
+        'value'
+    ];
+    
+    public function thoughts()
     {
-        return $this->belongsToMany(Note::class);
+        return $this->hasMany(Thought::class);
     }
 }

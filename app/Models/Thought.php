@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Note extends Model
+class Thought extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'mood_id',
+        'value',
+    ];
 
     public function mood(): BelongsTo
     {

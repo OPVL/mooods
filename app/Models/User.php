@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -53,4 +56,28 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function scaleSettings(): HasOne
+    {
+        return $this->hasOne(ScaleSettings::class);
+    }
+
+    public function moods(): HasMany
+    {
+        return $this->hasMany(Mood::class);
+    }
+
+    public function thoughts(): HasManyThrough
+    {
+        return $this->hasManyThrough(Thought::class, Mood::class);
+    }
+
+    public static function guest(): self
+    {
+        return self::firstOrCreate([
+            'email' => 'guest@example.com',
+            'name' => 'guest',
+            'password' => bcrypt((string)Carbon::now()->timestamp)
+        ]);
+    }
 }
