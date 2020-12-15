@@ -4,6 +4,7 @@ namespace App\Actions\Mood;
 
 use App\Models\Mood;
 use App\Models\Thought;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,8 @@ class CreateMood
 
     public function execute(array $input): ?Mood
     {
-        $mood = new Mood(['value' => Arr::get($input, 'mood')]);
-        Auth::user()->moods()->save($mood);
+        $mood = new Mood($input);
+        Auth::user() ?? User::guest()->moods()->save($mood);
 
         if (Arr::get($input, 'thoughts') !== null) {
             $this->action->execute(Arr::get($input, 'thoughts'), $mood->id);
