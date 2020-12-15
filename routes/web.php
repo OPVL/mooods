@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/')->uses(HomeController::class)->name('home.index');
+Route::get('/')->uses('HomeController')->name('home.index');
+Route::view('vibe', 'pages.vibe');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+Route::group(['middleware' => ['auth', 'verified']], function (): void {
+    Route::get('/dashboard')->uses('DashboardController')->name('dashboard');
 
+    Route::group(['prefix' => 'mood'], function (): void {
+        Route::get('')->uses('MoodsController@index')->name('mood.index');
+        Route::post('')->uses('MoodsController@store')->name('mood.store');
+        Route::get('create')->uses('MoodsController@create')->name('mood.create');
+        Route::patch('{mood}')->uses('MoodsController@update')->name('mood.update');
+        Route::delete('{mood}')->uses('MoodsController@destroy')->name('mood.destroy');
+    });
 
-Route::group(['prefix' => 'mood'], function (): void {
-    Route::get('')->uses('MoodController@index')->name('mood.index');
-    Route::get('create')->uses('MoodController@create')->name('mood.create');
-    Route::get('')->uses('MoodController@index')->name('mood.index');
-});
-
-Route::group(['prefix' => 'account'], function (): void {
-    Route::get('')->uses('AccountController@index')->name('account.index');
-    Route::post('')->uses('AccountController@store')->name('account.store');
+    Route::group(['prefix' => 'account'], function (): void {
+        Route::get('')->uses('AccountController@index')->name('account.index');
+        Route::post('')->uses('AccountController@store')->name('account.store');
+    });
 });
