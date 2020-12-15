@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScaleSettingsTable extends Migration
+class CreateDashboardSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateScaleSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scale_settings', function (Blueprint $table) {
+        Schema::create('dashboard_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 16);
-            $table->bigInteger('levels')->default(5);
-            $table->foreignId('user_id');
+            $table->string('theme', 36);
+            $table->foreignId('settings_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateScaleSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scale_settings');
+        Schema::dropIfExists('dashboard_settings');
     }
 }
