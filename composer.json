@@ -1,10 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "opvl/moood",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "simple self-hosted mood tracker",
     "keywords": [
-        "framework",
-        "laravel"
+        "moood",
     ],
     "authors": [
         {
@@ -33,6 +32,7 @@
     },
     "require-dev": {
         "brianium/paratest": "^6.1",
+        "doctrine/dbal": "^3.0",
         "drp/coding-standards": "^1.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
