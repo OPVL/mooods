@@ -14,10 +14,21 @@ use Inertia\Response;
 
 class MoodsController extends Controller
 {
-    public function index(): RedirectResponse
+    public function index(): View
     {
         // disable old route
-        return redirect()->route('dashboard');
+        $scalePrefs = (new ScaleSettings([
+            'type' => 'dots',
+            'levels' => 7,
+        ]))->toArray();
+
+        $this->data = [
+            'scale' => $scalePrefs, // user prefs
+            'question' => 'ur a heddgehog, no?', // user prefs
+            'route' => route('mood.store'),
+        ];
+
+        return view('pages.moods.create', $this->data);
     }
 
     public function create(): View
@@ -36,7 +47,8 @@ class MoodsController extends Controller
         return view('pages.moods.create', $this->data);
     }
 
-    public function store(StoreMood $request, CreateMood $action): RedirectResponse {
+    public function store(StoreMood $request, CreateMood $action): RedirectResponse
+    {
         $result = $action->execute($request->validated());
 
         if ($result) {
@@ -51,7 +63,11 @@ class MoodsController extends Controller
         return Inertia::render('Mood/Edit', compact('mood'));
     }
 
-    public function update(Mood $mood) {}
+    public function update(Mood $mood)
+    {
+    }
 
-    public function destroy(Mood $mood) {}
+    public function destroy(Mood $mood)
+    {
+    }
 }
