@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
-class DeleyeMood
+class DeleteMood
 {
     /** @var DeleteThoughts */
     protected $action;
