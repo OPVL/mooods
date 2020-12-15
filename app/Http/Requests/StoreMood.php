@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreMood extends FormRequest
 {
@@ -11,7 +12,9 @@ class StoreMood extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+        // permissions management hidden in bg
+        return (bool) Auth::user()->hasOnboarded;
     }
 
     /**
@@ -22,6 +25,9 @@ class StoreMood extends FormRequest
     public function rules(): array
     {
         return [
+            'value' => 'required|numeric|min:0|max:10',
+            'thoughts' => 'nullable|array',
+            // 'thoughts.*' => 'string|required_with:thoughts|min:1|max:120' // when we have thoughts it has to be valid
         ];
     }
 }
