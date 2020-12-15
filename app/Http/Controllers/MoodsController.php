@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Mood\CreateMood;
 use App\Http\Requests\StoreMood;
 use App\Models\Mood;
-use App\Models\ScaleSettings;
+use App\Models\Scale;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class MoodsController extends Controller
     public function index(): View
     {
         // disable old route
-        $scalePrefs = (new ScaleSettings([
+        $scalePrefs = (new Scale([
             'type' => 'dots',
             'levels' => 7,
         ]))->toArray();
@@ -33,7 +33,7 @@ class MoodsController extends Controller
 
     public function create(): View
     {
-        $scalePrefs = (new ScaleSettings([
+        $scalePrefs = (new Scale([
             'type' => 'dots',
             'levels' => 7,
         ]))->toArray();

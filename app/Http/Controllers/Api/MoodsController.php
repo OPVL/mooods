@@ -16,8 +16,8 @@ class MoodsController extends ApiController
         return new MoodResource(new Mood());
     }
 
-    public function destroy(Mood $mood, ): JsonResource
+    public function destroy(Mood $mood): ?bool
     {
-        return new MoodResource(new Mood());
+        return null;
     }
 }
