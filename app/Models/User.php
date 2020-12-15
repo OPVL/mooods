@@ -57,11 +57,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function scaleSettings(): HasOne
-    {
-        return $this->hasOne(ScaleSettings::class);
-    }
-
     public function moods(): HasMany
     {
         return $this->hasMany(Mood::class);
