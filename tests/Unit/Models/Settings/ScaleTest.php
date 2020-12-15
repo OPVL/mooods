@@ -1,21 +1,21 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Models\Settings;
 
-use App\Models\ScaleSettings;
+use App\Models\Settings\Scale;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ScaleSettingsTest extends TestCase
+class ScaleTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
     public function can_get_template_from_type()
     {
-        $settings = ScaleSettings::factory(
+        $settings = Scale::factory(
             ['type' => 'test', 'levels' => 5]
         )->create();
 
@@ -25,7 +25,7 @@ class ScaleSettingsTest extends TestCase
     /** @test */
     public function can_calculate_level_values()
     {
-        $settings = ScaleSettings::factory(
+        $settings = Scale::factory(
             ['type' => 'test', 'levels' => 5]
         )->create();
 
