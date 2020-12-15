@@ -9,6 +9,8 @@ class Scale extends Model
 {
     use HasFactory;
 
+    protected $table = 'scale_settings';
+
     protected $fillable = [
         'type',
         'levels',
