@@ -14,6 +14,7 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/d83d45983d.js" crossorigin="anonymous"></script>
     @yield('head')
+    @include('partials.favicons')
 </head>
 
 <body>
