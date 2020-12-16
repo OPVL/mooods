@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/')->uses('HomeController')->name('home.index');
 Route::view('vibe', 'pages.vibe');
 
@@ -32,3 +31,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         Route::post('')->uses('AccountController@store')->name('account.store');
     });
 });
+
+Route::view('maintenance', 'pages.maintenance')->name('maintenance');
+Route::view('holding', 'pages.holding')->name('holding');

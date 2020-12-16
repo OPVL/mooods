@@ -8,18 +8,18 @@
 
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Jost:ital,wght@0,400;0,700;1,300;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d83d45983d.js" crossorigin="anonymous"></script>
+    @yield('head')
 </head>
 
 <body>
+    {{-- @include('partials.nav') --}}
     @yield('content')
+    @include('partials.footer')
 </body>
 
 </html>
