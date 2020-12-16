@@ -34,7 +34,7 @@ class SettingsTest extends TestCase
     /** @test */
     public function with_all_settings_scope_works(): void
     {
-        $numSettings = 36;
+        $numSettings = 50;
         $numChildren = count(Settings::$children);
         Settings::factory()->count($numSettings)->withSettings()->create();
 
@@ -74,5 +74,7 @@ class SettingsTest extends TestCase
 
         $this->assertCount($numChildren + 1, DB::getQueryLog());
         $this->assertLessThan($slowTime, $scopeTime);
+
+        // dd(compact('slowTime', 'scopeTime'));
     }
 }
