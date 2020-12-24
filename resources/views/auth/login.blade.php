@@ -52,25 +52,35 @@
 
 @extends('layouts.guest')
 
+@section('title', 'login')
+@section('head')
+    @include('partials.temp-styles')
+@endsection
+
 @section('content')
     <form action="{{ route('login') }}" method="post">
         @csrf
-        <div>
-            <label for="email">
-                {{ __('Email') }}
-            </label>
-            <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus
-                autocomplete="email" />
-        </div>
+        <div class="frame">
+            <div class="row hero full-height">
+                <div class="column col-2">
+                    <div class="app-name">moood.</div>
+                    <div class="page-name">login</div>
+                </div>
+                <div class="column col-6">
+                    <label for="email">
+                        {{ __('Email') }}
+                    </label>
+                    <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                        autofocus autocomplete="email" />
 
-        <div class="">
-            <label for="password">
-                {{ __('Password') }}
-            </label>
-            <input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
+                    <label for="password">
+                        {{ __('Password') }}
+                    </label>
+                    <input id="password" class="block mt-1 w-full" type="password" name="password" required
+                        autocomplete="current-password" />
+                </div>
+                <button type="submit">login</button>
+            </div>
         </div>
-
-        <button type="submit">login</button>
     </form>
 @endsection
