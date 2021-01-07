@@ -58,29 +58,71 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('login') }}" method="post">
-        @csrf
-        <div class="frame">
-            <div class="row hero full-height">
-                <div class="column col-2">
-                    <div class="app-name">moood.</div>
-                    <div class="page-name">login</div>
-                </div>
-                <div class="column col-6">
-                    <label for="email">
-                        {{ __('Email') }}
-                    </label>
-                    <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                        autofocus autocomplete="email" />
+    <style>
+        .modal-anchor {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-                    <label for="password">
-                        {{ __('Password') }}
-                    </label>
-                    <input id="password" class="block mt-1 w-full" type="password" name="password" required
-                        autocomplete="current-password" />
-                </div>
-                <button type="submit">login</button>
+        form.modal {
+            min-width: 350px;
+            min-height: 400px;
+            /* background: gray; */
+            align-items: sp;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        button {
+            height: 60px;
+            width: 100%;
+            border: 2px solid black;
+            border-radius: 3px;
+        }
+
+        input {
+            height: 36px;
+            width: 100%;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+
+    </style>
+    <div class="frame">
+        <div class="row hero full-height">
+            <div class="modal-anchor">
+                <form class="modal" action="{{ route('login') }}" method="post">
+                    @csrf
+                    <div class="input-group">
+                        <label for="email">
+                            {{ __('Email') }}
+                        </label>
+                        <input id="email" class="input" type="email" name="email" :value="old('email')" required autofocus
+                            autocomplete="email" />
+                    </div>
+                    <div class="input-group">
+                        <label for="password">
+                            {{ __('Password') }}
+                        </label>
+                        <input id="password" class="input" type="password" name="password" required
+                            autocomplete="current-password" />
+                    </div>
+                    <div class="input-group">
+                        <button type="submit">login</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 @endsection
