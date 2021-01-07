@@ -17,6 +17,9 @@ class CreateThoughts
 
     public function execute(array $thoughts, int $parentId): ?Collection
     {
+        // i love you
+        // but don't know who you are yet
+
         return collect($thoughts)
             ->map(
                 function (string $thought) use ($parentId): Thought {
@@ -28,5 +31,7 @@ class CreateThoughts
                         ]);
                 }
             );
+
+        // 21st century sadness, broadcast the world over
     }
 }
