@@ -150,7 +150,7 @@
 
     .row.hero {
         min-height: 80vh;
-        background: linear-gradient(45deg, #0a7e9a75, rgb(136 38 12 / 57%)), url("https://source.unsplash.com/random/1920x1080?abstract");
+        background: linear-gradient(45deg, #0a7e9a75, rgb(136 38 12 / 57%)), url("https://source.unsplash.com/random/1920x1080?obscure");
         background-size: cover;
         justify-content: center;
         align-items: flex-end;
@@ -366,3 +366,16 @@
     }
 
 </style>
+
+@auth
+    @isset($user->settings)
+        <style>
+            .row.hero {
+                background: linear-gradient(45deg, {{ $user->settings->colourOne ?? '#0a7e9a75' }}, {{ $user->settings->colourTwo ?? 'rgb(136 38 12 / 57%)' }}),
+                url("https://source.unsplash.com/random/1920x1080?{{ $user->settings->dashboard->themes ?? 'city' }}");
+                background-size: cover;
+                background-attachment: {{ $user->settings->dashboard->anchorBackground ? 'fixed': 'none' }};
+            }
+        </style>
+    @endisset
+@endauth
