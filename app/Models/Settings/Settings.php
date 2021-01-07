@@ -19,6 +19,7 @@ class Settings extends Model
     public static $children = [
         'dashboard',
         'scale',
+        'theme',
     ];
 
     public function allSettings(): Collection
@@ -35,6 +36,11 @@ class Settings extends Model
     public function scale(): HasOne
     {
         return $this->hasOne(Scale::class);
+    }
+
+    public function theme(): HasOne
+    {
+        return $this->hasOne(Theme::class);
     }
 
     public function scopeWithAllSettings(Builder $query): Builder

@@ -10,4 +10,11 @@ class Dashboard extends Model
     use HasFactory;
 
     protected $table = 'dashboard_settings';
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+        ];
+    }
 }
