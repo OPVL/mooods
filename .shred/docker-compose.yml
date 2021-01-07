@@ -277,13 +277,16 @@ services:
         - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
         - ${NGINX_SSL_PATH}:/etc/nginx/ssl
       ports:
-        - "${NGINX_HOST_HTTP_PORT}:80"
-        - "${NGINX_HOST_HTTPS_PORT}:443"
+        - "${NGINX_HOST_HTTP_PORT}"
+        - "${NGINX_HOST_HTTPS_PORT}"
       depends_on:
         - php-fpm
       networks:
+        - domains
         - frontend
         - backend
+      environment:
+        - VIRTUAL_HOST=www.moood.test,moood.test
 
 ### MySQL ################################################
     mysql:
