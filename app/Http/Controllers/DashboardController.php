@@ -10,7 +10,10 @@ class DashboardController extends Controller
 {
     public function __invoke(): View
     {
-        $this->data['moods'] = Auth::user()->moods;
+        $user = Auth::user();
+
+        $this->data['user'] = $user;
+
         return view('pages.dashboard', $this->data);
     }    
 }

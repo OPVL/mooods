@@ -8,7 +8,7 @@
     <div class="frame">
         <div class="row hero">
             <div class="column col-6">
-                <div class="greeting">good evening, lloyd</div>
+                <div class="greeting">good evening, {{ $user->firstname }}</div>
             </div>
             <div class="column col-2 text-right">
                 <div class="date">Monday 15th December</div>
