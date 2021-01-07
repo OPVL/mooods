@@ -23,7 +23,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'surname',
         'email',
         'password',
     ];
@@ -77,7 +78,7 @@ class User extends Authenticatable
     {
         return self::firstOrCreate([
             'email' => 'guest@example.com',
-            'name' => 'guest',
+            'firstname' => 'guest',
             'password' => bcrypt((string)Carbon::now()->timestamp)
         ]);
     }

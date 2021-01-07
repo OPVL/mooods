@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/')->uses('HomeController')->name('home.index');
 Route::view('vibe', 'pages.vibe');
 
-Route::group(['middleware' => ['auth', 'verified']], function (): void {
+Route::group(['middleware' => ['auth', 'verified']], static function (): void {
     Route::get('/dashboard')->uses('DashboardController')->name('dashboard');
 
-    Route::group(['prefix' => 'mood'], function (): void {
+    Route::group(['prefix' => 'mood'], static function (): void {
         Route::get('')->uses('MoodsController@index')->name('mood.index');
         Route::post('')->uses('MoodsController@store')->name('mood.store');
         Route::get('create')->uses('MoodsController@create')->name('mood.create');
@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         Route::delete('{mood}')->uses('MoodsController@destroy')->name('mood.destroy');
     });
 
-    Route::group(['prefix' => 'account'], function (): void {
+    Route::group(['prefix' => 'account'], static function (): void {
         Route::get('')->uses('AccountController@index')->name('account.index');
         Route::post('')->uses('AccountController@store')->name('account.store');
     });
@@ -34,3 +34,10 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
 
 Route::view('maintenance', 'pages.maintenance')->name('maintenance');
 Route::view('holding', 'pages.holding')->name('holding');
+
+Route::group([], static function (): void {
+    Route::get('login')->uses('Auth\LoginController@index')->name('login');
+    Route::post('login')->uses('Auth\LoginController@store')->name('login.store');    
+    Route::get('register')->uses('Auth\RegisterController@index')->name('register');
+    Route::post('register')->uses('Auth\RegisterController@store')->name('register.store');
+});
