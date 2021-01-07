@@ -8,6 +8,7 @@ use App\Http\Requests\Login;
 use App\Http\Requests\Register;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -21,6 +22,8 @@ class RegisterController extends Controller
         $input = $request->validated();
 
         $user = $action->execute($input);
+        Auth::login($user);
+        
         return redirect()->intended(route('dashboard'));
     }
 }
