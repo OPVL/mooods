@@ -11,7 +11,7 @@ class ModifyUsersNameColumns extends Migration
         Schema::table('users', static function (Blueprint $table): void {
             $table->dropColumn('name');
             $table->string('firstname', 60);
-            $table->string('surname', 60);
+            $table->string('surname', 60)->nullable();
         });
     }
 
