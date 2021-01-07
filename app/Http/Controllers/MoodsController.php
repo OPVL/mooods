@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Mood\CreateMood;
 use App\Http\Requests\StoreMood;
 use App\Models\Mood;
-use App\Models\Scale;
+use App\Models\Settings\Scale;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,8 +19,10 @@ class MoodsController extends Controller
         // disable old route
         $scalePrefs = (new Scale([
             'type' => 'dots',
-            'levels' => 7,
+            'levels' => 5,
         ]))->toArray();
+
+        // ah joy I forgot about this fuckery. I'll fix it tomorrow
 
         $this->data = [
             'scale' => $scalePrefs, // user prefs
