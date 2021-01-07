@@ -11,8 +11,8 @@
                 <div class="greeting">good evening, {{ $user->firstname }}</div>
             </div>
             <div class="column col-2 text-right">
-                <div class="date">Monday 15th December</div>
-                <div class="time">00:26</div>
+                <div id="dateString" class="date">Monday 15th December</div>
+                <div id="timeString" class="time">00:26</div>
             </div>
         </div>
         @if (true)
@@ -80,5 +80,56 @@
 @endsection
 
 @section('scripts')
-    
+    <script>
+        const getOrdinalNum = (number) => {
+            let selector;
+
+            if (number <= 0) {
+                selector = 4;
+            } else if ((number > 3 && number < 21) || number % 10 > 3) {
+                selector = 0;
+            } else {
+                selector = number % 10;
+            }
+
+            return number + ['th', 'st', 'nd', 'rd', ''][selector];
+        };
+
+        function showTime() {
+            console.log('running');
+            var date = new Date();
+
+            const month = date.toLocaleDateString('en-US', {
+                month: 'long'
+            });
+            const day = date.toLocaleDateString('en-US', {
+                weekday: 'long'
+            });
+            console.log([month, day]);
+
+
+            const dateString = `${day} ${getOrdinalNum(date.getDay())} ${month}`;
+
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+
+            var time = h + ":" + m;
+            const eTime = document.getElementById("timeString");
+            eTime.innerText = time;
+            eTime.textContent = time;
+
+            const eDate = document.getElementById("dateString");
+            eDate.innerText = dateString;
+            eDate.textContent = dateString;
+
+            setTimeout(showTime, 15000);
+
+        }
+
+        showTime();
+
+    </script>
 @endsection
