@@ -82,4 +82,9 @@ class User extends Authenticatable
             'password' => bcrypt((string)Carbon::now()->timestamp)
         ]);
     }
+
+    public function hasRecentMood(): bool
+    {
+        return (bool) $this->moods()->recent()->first();
+    }
 }
