@@ -6,9 +6,11 @@ use App\Actions\Mood\CreateMood;
 use App\Http\Requests\StoreMood;
 use App\Models\Mood;
 use App\Models\Settings\Scale;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -35,13 +37,8 @@ class MoodsController extends Controller
 
     public function create(): View
     {
-        $scalePrefs = (new Scale([
-            'type' => 'dots',
-            'levels' => 7,
-        ]))->toArray();
-
         $this->data = [
-            'scale' => $scalePrefs, // user prefs
+            'scale' => Auth::user()->settings->scale->toArray(), // user prefs
             'question' => 'ur a heddgehog, no?', // user prefs
             'route' => route('mood.store'),
         ];
