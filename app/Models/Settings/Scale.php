@@ -4,6 +4,7 @@ namespace App\Models\Settings;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Scale extends Model
 {
@@ -16,6 +17,11 @@ class Scale extends Model
         'levels',
     ];
 
+    public function settings(): BelongsTo
+    {
+        return $this->belongsTo(Settings::class);
+    }
+
     public function toArray(): array
     {
         return [
@@ -23,7 +29,7 @@ class Scale extends Model
             'type' => $this->type,
             'template' => $this->template,
             'levels' => $this->levelValues,
-            'user' => $this->user_id
+            // 'user' => $this->settings->user_id
         ];
     }
 
