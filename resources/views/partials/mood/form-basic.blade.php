@@ -1,5 +1,6 @@
 <div class="question">
     {{ $question ?? 'how are you feeling?' }}
+    {{-- {{dd($question)}} --}}
 </div>
 <div class="response">
     <form class="response-form" action="{{ $route }}" method="POST">

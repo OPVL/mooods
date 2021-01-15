@@ -2,6 +2,9 @@
 
 @section('title', 'moooods')
 
+@section('head')
+    @include('partials.temp-styles')
+@endsection
     {{-- @section('nav')
     @parent
 
@@ -9,7 +12,7 @@
     @endsection --}}
 
 @section('content')
-    <style>
+    {{-- <style>
         * {
             padding: 0;
             margin: 0;
@@ -154,9 +157,9 @@
             display: none !important;
         }
 
-    </style>
+    </style> --}}
 
-    <style>
+    {{-- <style>
         /* Customize the label (the container) */
         .container {
             display: block;
@@ -223,11 +226,19 @@
             background: white;
         }
 
-    </style>
+    </style> --}}
     <div class="app">
         @error('mood', 'thoughts')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        @include('partials.mood.form-basic')
+    </div>
+    
+    <div class="frame">
+        <div class="row hero">
+            <div class="column col-12">
+                {{-- <div class="title">INSERT {GREETING} FROM PREFS</div> --}}
+                @include('partials.mood.form-basic')
+            </div>
+        </div>
     </div>
 @endsection

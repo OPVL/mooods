@@ -15,7 +15,7 @@
                 <div id="timeString" class="time">00:26</div>
             </div>
         </div>
-        @if (true)
+        @if (!$user->hasRecentMood())
             <div class="row moood-reminder">
                 <div class="column col-2">
                     <div class="dismiss-button"><i class="fas fa-times"></i></div>
@@ -25,7 +25,7 @@
                         <div class="question">
                             how are you feeling?
                         </div>
-                        <div class="launch-button"><i class="fas fa-arrow-right"></i></div>
+                        <a href="{{ route('mood.create') }}" class="launch-button"><i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="column col-2"></div>
