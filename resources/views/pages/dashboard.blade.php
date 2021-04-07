@@ -108,7 +108,7 @@
             console.log([month, day]);
 
 
-            const dateString = `${day} ${getOrdinalNum(date.getDay())} ${month}`;
+            const dateString = `${day} ${getOrdinalNum(date.getDate())} ${month}`;
 
             var h = date.getHours(); // 0 - 23
             var m = date.getMinutes(); // 0 - 59
